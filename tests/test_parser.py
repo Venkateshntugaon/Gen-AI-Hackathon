@@ -135,3 +135,16 @@ def test_fallback_when_too_many_questions_lack_options():
 def test_no_fallback_for_clean_paper():
     text = "1. A?\nA) x\nB) y\nC) z\n2. B?\nA) x\nB) y\nC) z"
     assert needs_llm_fallback(parse(text)) is False
+
+
+# ---------- Gemini extractor clean-up ----------
+
+def test_option_letters_copied_by_gemini_are_removed():
+    from src.reviewer.ingest.llm_extract import strip_option_letters
+    assert strip_option_letters(["A) Oxygen", "(b) Carbon dioxide", "C. Nitrogen", "D)Helium"]) == \
+        ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"]
+
+
+def test_option_text_starting_with_a_letter_is_kept():
+    from src.reviewer.ingest.llm_extract import strip_option_letters
+    assert strip_option_letters(["A bicycle", "B vitamins", "Calcium"]) == ["A bicycle", "B vitamins", "Calcium"]

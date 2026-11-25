@@ -1,0 +1,392 @@
+[
+  {
+    "id": "SciQ #11498",
+    "question": "Most turtle bodies are covered by a special bony or cartilaginous shell developed from their what?",
+    "correct_answer": "ribs",
+    "distractors": [
+      "ribcage",
+      "tails",
+      "fins"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 0,
+    "planted_text": "ribcage"
+  },
+  {
+    "id": "SciQ #488",
+    "question": "An antigen is a molecule that reacts with some component of the what response?",
+    "correct_answer": "immune",
+    "distractors": [
+      "digestion",
+      "fight or flight",
+      "defense mechanism"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 2,
+    "planted_text": "defense mechanism"
+  },
+  {
+    "id": "SciQ #4506",
+    "question": "A convergent plate boundary is created when two plates do what?",
+    "correct_answer": "come toward each other",
+    "distractors": [
+      "move away from each other",
+      "collide",
+      "stay stationary"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 1,
+    "planted_text": "collide"
+  },
+  {
+    "id": "SciQ #10485",
+    "question": "What do you call the electrons in the outermost energy level of an atom?",
+    "correct_answer": "valence electrons",
+    "distractors": [
+      "Inner electrons",
+      "outer shell electrons",
+      "Proper electrons"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 1,
+    "planted_text": "outer shell electrons"
+  },
+  {
+    "id": "SciQ #5574",
+    "question": "The addition of heat changes liquid water to what?",
+    "correct_answer": "water vapor",
+    "distractors": [
+      "rainwater",
+      "steam",
+      "distilled water"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 1,
+    "planted_text": "steam"
+  },
+  {
+    "id": "SciQ #106",
+    "question": "Renal plasma flow equals the blood flow per minute times the what?",
+    "correct_answer": "hematocrit",
+    "distractors": [
+      "complement of red blood cells",
+      "leukocytes",
+      "hemoglobin"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 0,
+    "planted_text": "complement of red blood cells"
+  },
+  {
+    "id": "SciQ #7359",
+    "question": "What ear structure has three fluid filled ducts, including the organ of corti, where sound waves in air go to vibration?",
+    "correct_answer": "cochlea",
+    "distractors": [
+      "inner ear spiral",
+      "saccule",
+      "utricle"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 0,
+    "planted_text": "inner ear spiral"
+  },
+  {
+    "id": "SciQ #3811",
+    "question": "What does the large central vacuole do?",
+    "correct_answer": "store water",
+    "distractors": [
+      "use water",
+      "hold moisture",
+      "heat water"
+    ],
+    "planted_type": "also_correct",
+    "planted_index": 1,
+    "planted_text": "hold moisture"
+  },
+  {
+    "id": "SciQ #520",
+    "question": "Neutron stars are the corpses of left over what?",
+    "correct_answer": "supernova explosions",
+    "distractors": [
+      "a bicycle",
+      "gravitational explosions",
+      "stellar explosions"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 0,
+    "planted_text": "a bicycle"
+  },
+  {
+    "id": "SciQ #10403",
+    "question": "What is it called when two species evolve matching traits?",
+    "correct_answer": "coevolution",
+    "distractors": [
+      "a teacup",
+      "interconnection",
+      "spontaneous mutation"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 0,
+    "planted_text": "a teacup"
+  },
+  {
+    "id": "SciQ #1654",
+    "question": "Producing light without a high temperature is called?",
+    "correct_answer": "luminescence",
+    "distractors": [
+      "plasma",
+      "an umbrella",
+      "effervescence"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 1,
+    "planted_text": "an umbrella"
+  },
+  {
+    "id": "SciQ #9674",
+    "question": "Which system in your body stores urine and is controlled by the nervous system?",
+    "correct_answer": "urinary system",
+    "distractors": [
+      "a pencil sharpener",
+      "muscular system",
+      "digestive system"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 0,
+    "planted_text": "a pencil sharpener"
+  },
+  {
+    "id": "SciQ #2664",
+    "question": "What is the reproductive part of the plant?",
+    "correct_answer": "the flower",
+    "distractors": [
+      "the leaf",
+      "a football",
+      "the core"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 1,
+    "planted_text": "a football"
+  },
+  {
+    "id": "SciQ #9044",
+    "question": "In a scientific experiment, the variable that is affected by the other one is called what?",
+    "correct_answer": "dependent variable",
+    "distractors": [
+      "effective variable",
+      "a toothbrush",
+      "independent variable"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 1,
+    "planted_text": "a toothbrush"
+  },
+  {
+    "id": "SciQ #4012",
+    "question": "Upon reaching the postsynaptic membrane, what type of chemical messenger binds to and activates a specific receptor?",
+    "correct_answer": "neurotransmitter",
+    "distractors": [
+      "hormone",
+      "neuropeptide",
+      "a wristwatch"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 2,
+    "planted_text": "a wristwatch"
+  },
+  {
+    "id": "SciQ #3598",
+    "question": "The primary substance that human cells, and ultimately human beings, are made up of is what?",
+    "correct_answer": "water",
+    "distractors": [
+      "air",
+      "a frying pan",
+      "gas"
+    ],
+    "planted_type": "implausible",
+    "planted_index": 1,
+    "planted_text": "a frying pan"
+  },
+  {
+    "id": "SciQ #8751",
+    "question": "What are organisms that depend on other living things for food?",
+    "correct_answer": "consumers",
+    "distractors": [
+      "customers",
+      "Customer",
+      "products"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 1,
+    "planted_text": "Customer"
+  },
+  {
+    "id": "SciQ #3611",
+    "question": "What adjective describes the movements that propel the feces during elimination?",
+    "correct_answer": "peristaltic",
+    "distractors": [
+      "convulsive",
+      "enzymatic",
+      "Convulsives"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 2,
+    "planted_text": "Convulsives"
+  },
+  {
+    "id": "SciQ #9654",
+    "question": "When land used for mining or other purposes is restored to its natural state, what do you call the process, which is often mandated by law?",
+    "correct_answer": "reclamation",
+    "distractors": [
+      "removal",
+      "Removals",
+      "urban renewal"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 1,
+    "planted_text": "Removals"
+  },
+  {
+    "id": "SciQ #10834",
+    "question": "Because the human body is about 70% water by mass, and liquid water has high specific heat, a great deal of what is required to change its temperature?",
+    "correct_answer": "energy",
+    "distractors": [
+      "power",
+      "work",
+      "Powers"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 2,
+    "planted_text": "Powers"
+  },
+  {
+    "id": "SciQ #5820",
+    "question": "What is the name of the cell that results when a sperm nucleus fuses with a egg nucleus?",
+    "correct_answer": "a zygote",
+    "distractors": [
+      "t cell",
+      "T cells",
+      "a filament"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 1,
+    "planted_text": "T cells"
+  },
+  {
+    "id": "SciQ #1169",
+    "question": "An ammeter must be connected in series with what to allow it to accurately measure the current flow without causing any disruptions?",
+    "correct_answer": "resistors",
+    "distractors": [
+      "insulators",
+      "configurations",
+      "Insulator"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 2,
+    "planted_text": "Insulator"
+  },
+  {
+    "id": "SciQ #4554",
+    "question": "What is a pair of valence electrons in a bonded atom that does not participate in bonding called?",
+    "correct_answer": "lone pair",
+    "distractors": [
+      "opposite pair",
+      "isolated pair",
+      "Opposite pairs"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 2,
+    "planted_text": "Opposite pairs"
+  },
+  {
+    "id": "SciQ #8928",
+    "question": "The changing of a light ray’s direction (loosely called bending) when it passes through variations in matter is called this?",
+    "correct_answer": "refraction",
+    "distractors": [
+      "wavelength",
+      "Wavelengths",
+      "vibration"
+    ],
+    "planted_type": "duplicate",
+    "planted_index": 1,
+    "planted_text": "Wavelengths"
+  },
+  {
+    "id": "SciQ #4010",
+    "question": "What is the type of cell division that produces gametes called?",
+    "correct_answer": "meiosis",
+    "distractors": [
+      "mitosis",
+      "electrolysis",
+      "fertilization"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  },
+  {
+    "id": "SciQ #1291",
+    "question": "Why are the stems of many xerophytes fleshy?",
+    "correct_answer": "stores water",
+    "distractors": [
+      "drains water",
+      "pressures water",
+      "collects water"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  },
+  {
+    "id": "SciQ #4422",
+    "question": "The number of possible isomers increases tremendously as carbon skeletons increase in what?",
+    "correct_answer": "size",
+    "distractors": [
+      "variation",
+      "mass",
+      "weight"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  },
+  {
+    "id": "SciQ #10133",
+    "question": "What is formed when an enzyme binds its substrate?",
+    "correct_answer": "enzyme - substrate complex",
+    "distractors": [
+      "vessel - substrate complex",
+      "nucleus - substrate complex",
+      "lock and key model"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  },
+  {
+    "id": "SciQ #11274",
+    "question": "How many chambers are in a reptiles heart?",
+    "correct_answer": "three",
+    "distractors": [
+      "ten",
+      "two",
+      "five"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  },
+  {
+    "id": "SciQ #10476",
+    "question": "A group of genetically identical individuals is called what?",
+    "correct_answer": "a clone",
+    "distractors": [
+      "brother",
+      "replicant",
+      "a man"
+    ],
+    "planted_type": null,
+    "planted_index": null,
+    "planted_text": null
+  }
+]

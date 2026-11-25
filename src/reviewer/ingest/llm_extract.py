@@ -8,13 +8,13 @@ The prompt (prompts/extract.md) tells Gemini to copy text verbatim and to leave
 the answer empty unless the paper marks it. The teacher confirms answers later.
 """
 
+import re
 from pathlib import Path
 
-from google import genai
 from google.genai import types
 from pydantic import BaseModel
 
-from src.reviewer import config
+from src.reviewer import llm
 from src.reviewer.ingest import readers
 from src.reviewer.ingest.parser import LETTERS, ParsedMCQ, needs_llm_fallback, parse
 
@@ -65,17 +65,8 @@ def extract_with_llm(filename: str, text: str | None = None,
     else:
         contents = [f"{prompt}\n\nDocument:\n{text}"]
 
-    client = genai.Client(api_key=config.get_api_key())
-    response = client.models.generate_content(
-        model=config.GEMINI_MODEL,
-        contents=contents,
-        config=types.GenerateContentConfig(
-            temperature=0.0,   # extraction must be literal, not creative
-            response_mime_type="application/json",
-            response_schema=ExtractOutput,
-        ),
-    )
-    output = ExtractOutput.model_validate_json(response.text)
+    raw = llm.generate_text(contents, ExtractOutput, temperature=0.0)   # literal copy, not creative
+    output = ExtractOutput.model_validate_json(raw)
     return [_to_parsed(q, filename) for q in output.questions]
 
 
@@ -84,5 +75,19 @@ def _to_parsed(q: ExtractedQuestion, filename: str) -> ParsedMCQ:
     # Keep the answer only if it is a real option letter; otherwise the teacher picks it.
     if answer not in tuple(LETTERS) or LETTERS.index(answer) >= len(q.options):
         answer = None
-    return ParsedMCQ(number=q.number, question=q.question, options=q.options,
+    return ParsedMCQ(number=q.number, question=q.question, options=strip_option_letters(q.options),
                      answer=answer, source=f"{filename} Q{q.number} (extracted by Gemini)")
+
+
+def strip_option_letters(options: list[str]) -> list[str]:
+    """Remove a leading "A) " / "(b) " / "C. " label that Gemini sometimes copies into the option.
+
+    Only the label matching the option's own position is removed, so text such as
+    "A bicycle" in position A is kept (no bracket or dot after the letter).
+    """
+    cleaned = []
+    for position, option in enumerate(options):
+        letter = LETTERS[position] if position < len(LETTERS) else ""
+        pattern = rf"^\s*\(?[{letter}{letter.lower()}][.)]\s*" if letter else r"(?!)"
+        cleaned.append(re.sub(pattern, "", option, count=1).strip() or option.strip())
+    return cleaned

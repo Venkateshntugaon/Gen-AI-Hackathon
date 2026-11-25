@@ -12,7 +12,7 @@ from src.reviewer.models import MCQ, Finding, ReviewResult, Suggestion
 from src.reviewer.pipeline import answer_lock
 from src.reviewer.pipeline.generator import generate
 from src.reviewer.pipeline.judge import judge, merge_findings
-from src.reviewer.pipeline.rules import check_rules
+from src.reviewer.pipeline.rules import check_rules, normalise
 from src.reviewer.pipeline.similarity import check_similarity
 from src.reviewer.pipeline.validator import choose_valid
 
@@ -70,7 +70,10 @@ def improve(mcq: MCQ, weak: dict[int, str], findings: list[Finding]) -> tuple[li
     missing = {i: p for i, p in weak.items() if i not in chosen}
     if missing:
         retry_chosen, _ = choose_valid(mcq, generate(mcq, missing, rejected=rejected))
-        chosen.update(retry_chosen)
+        for index, candidate in retry_chosen.items():
+            # The retry does not know the first round's picks; never suggest the same text twice.
+            if all(normalise(candidate.text) != normalise(c.text) for c in chosen.values()):
+                chosen[index] = candidate
 
     suggestions = [
         Suggestion(distractor_index=i, original=mcq.distractors[i],

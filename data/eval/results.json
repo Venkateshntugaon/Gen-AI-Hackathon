@@ -1,0 +1,1609 @@
+[
+  {
+    "mcq": {
+      "id": "SciQ #11498",
+      "question": "Most turtle bodies are covered by a special bony or cartilaginous shell developed from their what?",
+      "correct_answer": "ribs",
+      "distractors": [
+        "ribcage",
+        "tails",
+        "fins"
+      ],
+      "source": "SciQ #11498"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "The shell develops from an expanded ribcage, making this effectively synonymous with the correct answer.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Turtle tails are not involved in the formation of the protective shell.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Turtles have limbs rather than fins, and these do not form the shell.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "ribcage",
+        "new_text": "jaw",
+        "misconception": "Students may confuse the hard, bony structures of the head, such as the beak or jaw, with the origin of the body shell.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 1,
+        "original": "tails",
+        "new_text": "ears",
+        "misconception": "Students sometimes have bizarre misconceptions about anatomical origins of external features, guessing sensory organs.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "fins",
+        "new_text": "beak",
+        "misconception": "Students might confuse the hardened keratinous beak of the turtle with the formation of the bony carapace and plastron.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #488",
+      "question": "An antigen is a molecule that reacts with some component of the what response?",
+      "correct_answer": "immune",
+      "distractors": [
+        "digestion",
+        "fight or flight",
+        "defense mechanism"
+      ],
+      "source": "SciQ #488"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Digestion is unrelated to antigen reactions.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Fight or flight refers to the sympathetic nervous system stress response, not antigen interactions.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "also_correct",
+        "severity": "medium",
+        "reason": "Defense mechanism is a descriptive term for immunity, making this partially defensible though not the precise scientific term.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "digestion",
+        "new_text": "nervous",
+        "misconception": "Students associate biological signaling molecules broadly with the nervous system.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "defense mechanism",
+        "new_text": "hormonal",
+        "misconception": "Students confuse antigens with hormones because both are circulating bodily molecules.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #4506",
+      "question": "A convergent plate boundary is created when two plates do what?",
+      "correct_answer": "come toward each other",
+      "distractors": [
+        "move away from each other",
+        "collide",
+        "stay stationary"
+      ],
+      "source": "SciQ #4506"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Stationary plates do not form tectonic boundaries associated with active movement.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "answer_key",
+        "issue_type": "possible_wrong_answer_key",
+        "severity": "high",
+        "reason": "Option 1 is also a correct scientific description of convergent plate boundaries, making the key incomplete.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "answer_cue",
+        "severity": "medium",
+        "reason": "This describes a divergent boundary, which is a common misconception and the direct opposite of convergent.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "Collision is another way to describe plates coming together at a convergent boundary.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "move away from each other",
+        "new_text": "rotate around each other",
+        "misconception": "Students sometimes picture tectonic plates as spinning or rotating on a central axis rather than interacting linearly.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 1,
+        "original": "collide",
+        "new_text": "fracture into pieces",
+        "misconception": "Students may think that plate boundaries are simply locations where rocks break randomly rather than distinct zones of plate interaction.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "stay stationary",
+        "new_text": "slide past each other",
+        "misconception": "Students often confuse convergent boundaries with transform boundaries, thinking all plate movement involves sliding past one another horizontally.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #10485",
+      "question": "What do you call the electrons in the outermost energy level of an atom?",
+      "correct_answer": "valence electrons",
+      "distractors": [
+        "Inner electrons",
+        "outer shell electrons",
+        "Proper electrons"
+      ],
+      "source": "SciQ #10485"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "This is a synonymous and descriptive term for valence electrons.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Made-up distractor with no basis in scientific terminology.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "outer shell electrons",
+        "new_text": "Core electrons",
+        "misconception": "Students often confuse valence electrons with core electrons, which are located in the inner energy levels.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "Proper electrons",
+        "new_text": "Fixed electrons",
+        "misconception": "Students may wrongly believe that non-valence electrons are the only ones capable of moving while outer electrons are permanently fixed.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #5574",
+      "question": "The addition of heat changes liquid water to what?",
+      "correct_answer": "water vapor",
+      "distractors": [
+        "rainwater",
+        "steam",
+        "distilled water"
+      ],
+      "source": "SciQ #5574"
+    },
+    "findings": [
+      {
+        "target": "answer_key",
+        "issue_type": "possible_wrong_answer_key",
+        "severity": "high",
+        "reason": "The verified answer is water vapor, but steam is also entirely correct since heating liquid water produces steam.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Rainwater is a form of precipitation, not a phase change product of heated water.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "Steam is also a correct scientific term for water in the gas phase produced by heating.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Distilled water is purified liquid water, not a product of heating liquid water.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "steam",
+        "new_text": "liquid ice",
+        "misconception": "Students may confuse melting and boiling, thinking that adding heat to liquid water results in a semi-melted solid state.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #106",
+      "question": "Renal plasma flow equals the blood flow per minute times the what?",
+      "correct_answer": "hematocrit",
+      "distractors": [
+        "complement of red blood cells",
+        "leukocytes",
+        "hemoglobin"
+      ],
+      "source": "SciQ #106"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "This refers to plasma fraction, not the complement term used in this context.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Leukocytes are white blood cells and are not part of the hematocrit formula for plasma flow.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #7359",
+      "question": "What ear structure has three fluid filled ducts, including the organ of corti, where sound waves in air go to vibration?",
+      "correct_answer": "cochlea",
+      "distractors": [
+        "inner ear spiral",
+        "saccule",
+        "utricle"
+      ],
+      "source": "SciQ #7359"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "also_correct",
+        "severity": "medium",
+        "reason": "This is a descriptive name for the cochlea rather than its actual anatomical term.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "inner ear spiral",
+        "new_text": "tympanum",
+        "misconception": "Believing the eardrum rather than the cochlea contains the fluid-filled ducts and organ of Corti.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #3811",
+      "question": "What does the large central vacuole do?",
+      "correct_answer": "store water",
+      "distractors": [
+        "use water",
+        "hold moisture",
+        "heat water"
+      ],
+      "source": "SciQ #3811"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Vacuoles store water rather than actively using it for metabolic processes.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "medium",
+        "reason": "Holding moisture is a synonymous concept to storing water, making this option potentially defensible.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Vacuoles do not heat water; temperature regulation is not their biological function.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "hold moisture",
+        "new_text": "pump blood",
+        "misconception": "Students often confuse the function of plant cell vacuoles with the circulatory or pumping functions found in animal systems.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "heat water",
+        "new_text": "kill germs",
+        "misconception": "Students often confuse the large central vacuole's storage function with the digestive and protective roles of lysosomes.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #520",
+      "question": "Neutron stars are the corpses of left over what?",
+      "correct_answer": "supernova explosions",
+      "distractors": [
+        "a bicycle",
+        "gravitational explosions",
+        "stellar explosions"
+      ],
+      "source": "SciQ #520"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A bicycle is completely unrelated to astrophysics.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "medium",
+        "reason": "Gravitational collapse is involved, but 'gravitational explosions' is not the standard scientific term used for this event.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "Supernova explosions are a type of stellar explosion, making this scientifically correct and very tempting.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "a bicycle",
+        "new_text": "planetary nebula",
+        "misconception": "Students often confuse the endpoints of high-mass and low-mass stars, thinking neutron stars form from planetary nebulae.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 1,
+        "original": "gravitational explosions",
+        "new_text": "radioactive decay",
+        "misconception": "Students may attribute the creation of dense stellar remnants to basic radioactive decay processes rather than cataclysmic cosmic events.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "stellar explosions",
+        "new_text": "gamma-ray bursts",
+        "misconception": "Students often confuse energetic cosmic phenomena like gamma-ray bursts with the actual physical stellar remnant explosions.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #10403",
+      "question": "What is it called when two species evolve matching traits?",
+      "correct_answer": "coevolution",
+      "distractors": [
+        "a teacup",
+        "interconnection",
+        "spontaneous mutation"
+      ],
+      "source": "SciQ #10403"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Completely irrelevant and absurd for a biological question.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Mutation is an evolutionary mechanism, but does not describe the matching traits of two species.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "a teacup",
+        "new_text": "speciation",
+        "misconception": "Students often confuse the formation of new species with the interactive adaptation processes between existing species.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "spontaneous mutation",
+        "new_text": "divergence",
+        "misconception": "Students often confuse convergent or matching traits with divergent evolution, mixing up whether species are becoming similar or different.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #1654",
+      "question": "Producing light without a high temperature is called?",
+      "correct_answer": "luminescence",
+      "distractors": [
+        "plasma",
+        "an umbrella",
+        "effervescence"
+      ],
+      "source": "SciQ #1654"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "An umbrella is a completely unrelated everyday object with no relation to physics or light.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Plasma is a state of matter and does not represent cold light production.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Effervescence refers to bubble formation in a liquid, which is unrelated to light.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "an umbrella",
+        "new_text": "incandescence",
+        "misconception": "Students often confuse luminescence with incandescence, thinking all light production involves heat.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #9674",
+      "question": "Which system in your body stores urine and is controlled by the nervous system?",
+      "correct_answer": "urinary system",
+      "distractors": [
+        "a pencil sharpener",
+        "muscular system",
+        "digestive system"
+      ],
+      "source": "SciQ #9674"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Completely unrelated object from outside the topic of biology.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "a pencil sharpener",
+        "new_text": "nervous system",
+        "misconception": "Students often confuse the system that controls an action with the system that performs the physical storage and containment of waste.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #2664",
+      "question": "What is the reproductive part of the plant?",
+      "correct_answer": "the flower",
+      "distractors": [
+        "the leaf",
+        "a football",
+        "the core"
+      ],
+      "source": "SciQ #2664"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A football is a sports object and completely unrelated to plant biology.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "The core refers to fruit anatomy rather than the primary reproductive organ of a plant.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "a football",
+        "new_text": "the stem",
+        "misconception": "Students often confuse the main structural support organ of the plant with the reproductive organ.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #9044",
+      "question": "In a scientific experiment, the variable that is affected by the other one is called what?",
+      "correct_answer": "dependent variable",
+      "distractors": [
+        "effective variable",
+        "a toothbrush",
+        "independent variable"
+      ],
+      "source": "SciQ #9044"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A toothbrush is completely unrelated to scientific variables.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Effective variable is not a standard scientific term.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "a toothbrush",
+        "new_text": "control group",
+        "misconception": "Students often confuse the dependent variable with the control group because both are key components of experimental design.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #4012",
+      "question": "Upon reaching the postsynaptic membrane, what type of chemical messenger binds to and activates a specific receptor?",
+      "correct_answer": "neurotransmitter",
+      "distractors": [
+        "hormone",
+        "neuropeptide",
+        "a wristwatch"
+      ],
+      "source": "SciQ #4012"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "also_correct",
+        "severity": "high",
+        "reason": "Neuropeptides are indeed a type of neurotransmitter/neuromodulator that bind to postsynaptic receptors.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A wristwatch is a completely unrelated object and serves as a nonsense distractor.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "neuropeptide",
+        "new_text": "electrolyte",
+        "misconception": "Students often confuse ions or minerals dissolved in body fluids with direct chemical messengers at the synapse.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "a wristwatch",
+        "new_text": "nucleotide",
+        "misconception": "Students often confuse basic building blocks of DNA and energy currency molecules with synaptic messengers.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #3598",
+      "question": "The primary substance that human cells, and ultimately human beings, are made up of is what?",
+      "correct_answer": "water",
+      "distractors": [
+        "air",
+        "a frying pan",
+        "gas"
+      ],
+      "source": "SciQ #3598"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A frying pan is an inanimate household object completely unrelated to human cellular composition.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Air is a mixture of gases, not the primary substance composing human cells.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Gas is a state of matter and does not form the primary substance of human cells.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "a frying pan",
+        "new_text": "bone",
+        "misconception": "Students often believe that the skeleton or hard structures make up the majority of the human body's mass.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #8751",
+      "question": "What are organisms that depend on other living things for food?",
+      "correct_answer": "consumers",
+      "distractors": [
+        "customers",
+        "Customer",
+        "products"
+      ],
+      "source": "SciQ #8751"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is essentially the same distractor as option zero with different capitalization.",
+        "detected_by": [
+          "rules",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Customers are people who buy goods, not biological organisms.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "This is essentially the same distractor as option zero with different capitalization.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "Customer",
+        "new_text": "producers",
+        "misconception": "Students often confuse consumers with producers, thinking organisms that eat other living things make their own food.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #3611",
+      "question": "What adjective describes the movements that propel the feces during elimination?",
+      "correct_answer": "peristaltic",
+      "distractors": [
+        "convulsive",
+        "enzymatic",
+        "Convulsives"
+      ],
+      "source": "SciQ #3611"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is simply a duplicate of option 0 with a plural capitalization.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Convulsive movements are not associated with normal fecal elimination.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Enzymatic refers to chemical processes, not movements.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "This is simply a duplicate of option 0 with a plural capitalization.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 2,
+        "original": "Convulsives",
+        "new_text": "hydrostatic",
+        "misconception": "Students often confuse pressure-driven movement of fluids in general biology (like hydrostatic pressure in the circulatory or plant systems) with the specific muscle contractions of the gut.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #9654",
+      "question": "When land used for mining or other purposes is restored to its natural state, what do you call the process, which is often mandated by law?",
+      "correct_answer": "reclamation",
+      "distractors": [
+        "removal",
+        "Removals",
+        "urban renewal"
+      ],
+      "source": "SciQ #9654"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "Removals is just a grammatical variant of option zero and is also incorrect.",
+        "detected_by": [
+          "rules",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Removal is not synonymous with ecological restoration of mined land.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Removals is just a grammatical variant of option zero and is also incorrect.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "Removals",
+        "new_text": "reforestation",
+        "misconception": "Students often confuse land reclamation with simply planting trees, assuming any ecological repair is just reforestation.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #10834",
+      "question": "Because the human body is about 70% water by mass, and liquid water has high specific heat, a great deal of what is required to change its temperature?",
+      "correct_answer": "energy",
+      "distractors": [
+        "power",
+        "work",
+        "Powers"
+      ],
+      "source": "SciQ #10834"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is merely a capitalized plural duplicate of option zero and is completely incorrect.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Work refers to energy transferred by force, which is not the primary mechanism of temperature change here.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "This is merely a capitalized plural duplicate of option zero and is completely incorrect.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 2,
+        "original": "Powers",
+        "new_text": "space",
+        "misconception": "Students may think that temperature change relates to expanding physical space or volume rather than thermal energy absorption.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #5820",
+      "question": "What is the name of the cell that results when a sperm nucleus fuses with a egg nucleus?",
+      "correct_answer": "a zygote",
+      "distractors": [
+        "t cell",
+        "T cells",
+        "a filament"
+      ],
+      "source": "SciQ #5820"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is essentially a duplicate of option 0, referring to T cells with different capitalization.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "This is essentially a duplicate of option 0, referring to T cells with different capitalization.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "T cells are white blood cells involved in the immune system, completely unrelated to fertilization.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A filament is a plant structure or part of a stamen, unrelated to animal or plant zygotes.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "t cell",
+        "new_text": "a gamete",
+        "misconception": "Students often confuse the reproductive cells (gametes) with the single cell formed immediately after fertilization (the zygote).",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 1,
+        "original": "T cells",
+        "new_text": "a pollen",
+        "misconception": "Students might mix up plant male reproductive structures with the resulting fertilized cell.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "a filament",
+        "new_text": "a mitosis",
+        "misconception": "Students often confuse the name of a cellular process with the name of the resulting cell.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #1169",
+      "question": "An ammeter must be connected in series with what to allow it to accurately measure the current flow without causing any disruptions?",
+      "correct_answer": "resistors",
+      "distractors": [
+        "insulators",
+        "configurations",
+        "Insulator"
+      ],
+      "source": "SciQ #1169"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is a duplicate of option 0 with capitalization differences.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "question",
+        "issue_type": "ambiguous_question",
+        "severity": "high",
+        "reason": "The question is confusingly phrased and does not clearly ask what circuit component an ammeter is placed in series with.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Insulators block current and would disrupt the circuit completely.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Configurations is a vague term, not a circuit component.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "This is a duplicate of option 0 with capitalization differences.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "insulators",
+        "new_text": "batteries",
+        "misconception": "Students often believe ammeters need to be connected directly to the power source rather than components.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 1,
+        "original": "configurations",
+        "new_text": "transistors",
+        "misconception": "Students may conflate active components like transistors with basic passive circuit elements.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "Insulator",
+        "new_text": "voltmeters",
+        "misconception": "Students often confuse ammeters and voltmeters, believing they connect in the same way within a circuit.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #4554",
+      "question": "What is a pair of valence electrons in a bonded atom that does not participate in bonding called?",
+      "correct_answer": "lone pair",
+      "distractors": [
+        "opposite pair",
+        "isolated pair",
+        "Opposite pairs"
+      ],
+      "source": "SciQ #4554"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is simply a capitalized duplicate of option 0 and not a real scientific term.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Opposite pair is not a standard chemistry term.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "This is simply a capitalized duplicate of option 0 and not a real scientific term.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 2,
+        "original": "Opposite pairs",
+        "new_text": "free electron",
+        "misconception": "Students often confuse lone pairs with single, unbonded free electrons or conduction electrons in a metal.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #8928",
+      "question": "The changing of a light ray’s direction (loosely called bending) when it passes through variations in matter is called this?",
+      "correct_answer": "refraction",
+      "distractors": [
+        "wavelength",
+        "Wavelengths",
+        "vibration"
+      ],
+      "source": "SciQ #8928"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "duplicate",
+        "severity": "low",
+        "reason": "This is simply the plural form of option 0 and is equally incorrect.",
+        "detected_by": [
+          "rules",
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Wavelength is a property of light, not a term for bending.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "This is simply the plural form of option 0 and is equally incorrect.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Vibration refers to oscillatory motion, not the bending of light rays through matter.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "Wavelengths",
+        "new_text": "reflection",
+        "misconception": "Students often confuse refraction (bending through matter) with reflection (bouncing off a surface).",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #4010",
+      "question": "What is the type of cell division that produces gametes called?",
+      "correct_answer": "meiosis",
+      "distractors": [
+        "mitosis",
+        "electrolysis",
+        "fertilization"
+      ],
+      "source": "SciQ #4010"
+    },
+    "findings": [
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Electrolysis is a chemistry process and completely unrelated to cell division.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 1,
+        "original": "electrolysis",
+        "new_text": "osmosis",
+        "misconception": "Students often confuse the scientific terms ending in '-osis', such as osmosis and meiosis, thinking they all refer to types of cell division or biological transport processes.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #1291",
+      "question": "Why are the stems of many xerophytes fleshy?",
+      "correct_answer": "stores water",
+      "distractors": [
+        "drains water",
+        "pressures water",
+        "collects water"
+      ],
+      "source": "SciQ #1291"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Draining water would be harmful to plants in dry environments, making this option counterintuitive and incorrect.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Pressuring water is not a biological function or purpose of fleshy stems in xerophytes.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "also_correct",
+        "severity": "medium",
+        "reason": "Collects water is somewhat tempting as it relates to water acquisition, but fleshy stems store rather than collect water.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 2,
+        "original": "collects water",
+        "new_text": "produces water",
+        "misconception": "Students may mistakenly believe that plant tissues can chemically synthesize or generate water internally to survive drought.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #4422",
+      "question": "The number of possible isomers increases tremendously as carbon skeletons increase in what?",
+      "correct_answer": "size",
+      "distractors": [
+        "variation",
+        "mass",
+        "weight"
+      ],
+      "source": "SciQ #4422"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Variation is too vague to describe the structural growth of carbon skeletons.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #10133",
+      "question": "What is formed when an enzyme binds its substrate?",
+      "correct_answer": "enzyme - substrate complex",
+      "distractors": [
+        "vessel - substrate complex",
+        "nucleus - substrate complex",
+        "lock and key model"
+      ],
+      "source": "SciQ #10133"
+    },
+    "findings": [
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "\"lock and key model\" is unrelated to the correct answer (similarity 0.02).",
+        "detected_by": [
+          "similarity"
+        ]
+      },
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "Vessels are transport structures in organisms, making this term completely unrelated to enzyme binding.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:1",
+        "issue_type": "implausible",
+        "severity": "low",
+        "reason": "The nucleus is a cellular organelle, so it is biologically irrelevant to enzyme-substrate interactions.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 2,
+        "original": "lock and key model",
+        "new_text": "enzyme - product complex",
+        "misconception": "Students often confuse the intermediate state before the reaction occurs with the final state after the reaction is complete.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #11274",
+      "question": "How many chambers are in a reptiles heart?",
+      "correct_answer": "three",
+      "distractors": [
+        "ten",
+        "two",
+        "five"
+      ],
+      "source": "SciQ #11274"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Ten is completely unrelated to vertebrate heart anatomy and serves as a nonsense distractor.",
+        "detected_by": [
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Five is not a standard number of heart chambers found in vertebrate animals.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "ten",
+        "new_text": "one",
+        "misconception": "Students may confuse the simple single-loop circulatory system of fish with that of reptiles.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "five",
+        "new_text": "four",
+        "misconception": "Students often assume all advanced land animals, including reptiles, share the four-chambered heart structure of mammals and birds.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  },
+  {
+    "mcq": {
+      "id": "SciQ #10476",
+      "question": "A group of genetically identical individuals is called what?",
+      "correct_answer": "a clone",
+      "distractors": [
+        "brother",
+        "replicant",
+        "a man"
+      ],
+      "source": "SciQ #10476"
+    },
+    "findings": [
+      {
+        "target": "distractor:0",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "Brothers share DNA but are not genetically identical.",
+        "detected_by": [
+          "similarity",
+          "llm"
+        ]
+      },
+      {
+        "target": "distractor:2",
+        "issue_type": "implausible",
+        "severity": "medium",
+        "reason": "A man is a specific human male and completely unrelated to genetic identity groups.",
+        "detected_by": [
+          "llm"
+        ]
+      }
+    ],
+    "suggestions": [
+      {
+        "distractor_index": 0,
+        "original": "brother",
+        "new_text": "twin",
+        "misconception": "Students often believe all twins, including fraternal twins, are genetically identical.",
+        "status": "pending"
+      },
+      {
+        "distractor_index": 2,
+        "original": "a man",
+        "new_text": "a brood",
+        "misconception": "Students might mix up animal offspring groups with genetically identical populations.",
+        "status": "pending"
+      }
+    ],
+    "answer_preserved": true
+  }
+]

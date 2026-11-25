@@ -51,7 +51,7 @@ def judge(mcq: MCQ, rule_findings: list[Finding], similarity_scores: dict) -> li
 
 
 def verdict_to_findings(output: JudgeOutput, n_distractors: int) -> list[Finding]:
-    """Apply the severity mapping table from IMPLEMENTATION.md §5 Phase 3."""
+    """Apply the severity mapping table from IMPLEMENTATION.md §5 Phase 3 (implausible tuned, see below)."""
     findings = []
     if output.question_ambiguous:
         findings.append(_finding("question", "ambiguous_question", "high", output.question_reason))
@@ -67,8 +67,13 @@ def verdict_to_findings(output: JudgeOutput, n_distractors: int) -> list[Finding
             findings.append(_finding(target, "also_correct", "high", verdict.reason))
         elif verdict.is_also_correct == "partly":
             findings.append(_finding(target, "also_correct", "medium", verdict.reason))
-        if verdict.plausibility <= 2:
+        # The plan maps plausibility <= 2 to MEDIUM. Our evaluation showed that this
+        # over-flags (precision 0.14); using 1 -> MEDIUM and 2 -> LOW doubled precision
+        # with no loss of recall (see docs/CHALLENGES.md, Phase 7).
+        if verdict.plausibility <= 1:
             findings.append(_finding(target, "implausible", "medium", verdict.reason))
+        elif verdict.plausibility == 2:
+            findings.append(_finding(target, "implausible", "low", verdict.reason))
         # The table has no row for duplicate / answer_cue; keep them at the rule-layer severity.
         if verdict.issue_type == "duplicate":
             findings.append(_finding(target, "duplicate", "low", verdict.reason))
