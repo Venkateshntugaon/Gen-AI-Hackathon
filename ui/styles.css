@@ -66,7 +66,45 @@ h1, h2, h3, h4, .app-title { font-family: 'Poppins', system-ui, sans-serif; colo
 /* Question card content */
 .q-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .q-title { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--ink); }
-.q-source { color: var(--grey); font-size: 0.78rem; white-space: nowrap; }
+.q-source { color: var(--grey); font-size: 0.78rem; margin-top: 0.15rem; }
+.q-meta { display: flex; gap: 0.5rem; align-items: center; white-space: nowrap; }
+.q-stripe { height: 4px; border-radius: 4px; margin: -0.2rem 0 0.8rem 0; }
+.q-stripe.high { background: var(--maroon); }
+.q-stripe.medium { background: var(--amber); }
+.q-stripe.low { background: var(--grey); }
+.q-stripe.ok { background: var(--green); }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); margin: 0.9rem 0 0.2rem; }
+
+/* Upload page: how it works */
+.hiw { margin-top: 0.4rem; }
+.hiw-title { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 1.05rem;
+  color: var(--ink); margin-bottom: 0.6rem; }
+.hiw-list { list-style: none; padding: 0; margin: 0; }
+.hiw-list li { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0; }
+.hiw-num { flex: none; display: inline-flex; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700;
+  background: var(--light-blue); color: var(--navy); }
+.lock-note { margin-top: 0.8rem; padding: 0.6rem 0.8rem; border-radius: 8px; background: #EEF7F2;
+  color: var(--green); font-size: 0.88rem; font-weight: 500; }
+
+/* Results: summary tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem;
+  margin: 0.4rem 0 1.2rem; }
+.tile { background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--navy);
+  border-radius: 10px; padding: 0.8rem 1rem; box-shadow: 0 1px 3px rgba(6, 31, 57, 0.06); }
+.tile.high { border-top-color: var(--maroon); }
+.tile.medium { border-top-color: var(--amber); }
+.tile.low { border-top-color: var(--grey); }
+.tile.ok { border-top-color: var(--green); background: #F4FBF7; }
+.tile-value { font-family: 'Poppins', system-ui, sans-serif; font-size: 1.5rem; font-weight: 700;
+  color: var(--ink); line-height: 1.2; }
+.tile.ok .tile-value { color: var(--green); font-size: 1.25rem; }
+.tile-label { color: var(--grey); font-size: 0.8rem; margin-top: 0.15rem; }
+
+/* Review step */
+.review-now { background: #fff; border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.6rem 0.9rem; margin: 0.6rem 0 0.3rem; }
 .options { margin: 0.8rem 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .opt { display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.6rem; align-items: center;
   padding: 0.5rem 0.8rem; border-top: 1px solid var(--border); }
@@ -81,7 +119,10 @@ h1, h2, h3, h4, .app-title { font-family: 'Poppins', system-ui, sans-serif; colo
   font-size: 0.7rem; background: var(--light-blue); color: var(--navy); }
 .banner { background: var(--light-pink); border-left: 4px solid var(--maroon); color: var(--maroon);
   padding: 0.6rem 0.9rem; border-radius: 6px; font-weight: 600; margin: 0.6rem 0; }
-.suggestion { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; }
+.suggestion { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--navy);
+  border-radius: 8px; padding: 0.6rem 0.9rem; }
+.suggestion.accepted { border-left-color: var(--green); background: #F4FBF7; }
+.suggestion.rejected { border-left-color: var(--grey); opacity: 0.7; }
 .suggestion .old { text-decoration: line-through; color: var(--grey); }
 .suggestion .new { font-weight: 600; color: var(--navy); }
 .suggestion .why { font-style: italic; color: var(--grey); font-size: 0.88rem; }
@@ -89,3 +130,16 @@ h1, h2, h3, h4, .app-title { font-family: 'Poppins', system-ui, sans-serif; colo
 .status.accepted { color: var(--green); }
 .status.rejected { color: var(--grey); }
 .muted { color: var(--grey); font-size: 0.88rem; }
+
+/* Bigger, friendlier upload area */
+[data-testid="stFileUploaderDropzone"] { min-height: 150px; border: 2px dashed #B9C4D6;
+  background: #fff; border-radius: 10px; }
+[data-testid="stFileUploaderDropzone"]:hover { border-color: var(--maroon); background: var(--light-pink); }
+
+/* Phone width: keep a 16px gutter and stack the card header */
+@media (max-width: 640px) {
+  .block-container { padding-left: 16px; padding-right: 16px; }
+  .q-head { flex-direction: column; gap: 0.3rem; }
+  .opt { grid-template-columns: 1.6rem 1fr; }
+  .opt > :last-child { grid-column: 2; }
+}

@@ -48,3 +48,10 @@
 **Files:** src/reviewer/export.py
 **How to verify:** On the Results page, accept a suggestion and download all three files. In the sample run, the revised DOCX showed "D) Fungus" (accepted) in Q1, and its answer key letters matched the original paper's answers exactly (checked by script).
 **Notes / issues:** Only suggestions with status "accepted" change the paper. The answer is inserted back into its original position, so answer letters never move.
+
+## Phase 5–6 follow-up: teacher-friendly downloads and UI polish  (2026-11-25)
+**What we built:** After the team tried the app, two changes. (1) Teachers do not use CSV or JSON files, so the two main downloads are now Word documents: the revised question paper and a new **Review Report** (.docx) with a summary table, a "how to read this report" note, and every question with its options (correct answer marked "unchanged"), colour-coded findings in plain English, and suggested replacements with their accept/reject status. The CSV and JSON stay available under "For analysis". (2) UI polish: the Upload page has a "How it works" panel and a larger drop zone; results show coloured summary tiles, a severity stripe and issue count on each question card, "Accept / Reject all undecided" buttons, and Accept/Reject next to each suggestion; the Review step shows the question currently being checked.
+**Why:** The users are teachers, who work in Word. A PDF can be made from either document in Word (File → Save as PDF) without adding a PDF library.
+**Files:** src/reviewer/export.py, app.py, ui/components.py, ui/styles.css
+**How to verify:** `streamlit run app.py` → sample paper → Start review → "Accept all undecided" → download "Revised question paper" and "Review report", and open both in Word. AppTest run: full flow, Accept-all and Start-over all run with no exceptions.
+**Notes / issues:** Streamlit button icons must be real emoji or `:material/...:` names; "↺" raised an exception, so Material icons are used.

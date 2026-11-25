@@ -28,6 +28,7 @@ from ui import components as ui
 SAMPLE_PAPER = Path(__file__).resolve().parent / "data" / "sample" / "sample_paper.docx"
 LETTERS = "ABCD"
 STEP_INDEX = {"upload": 0, "confirm": 1, "review": 2, "results": 3}
+DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 
 st.set_page_config(page_title="MCQ Distractor Reviewer", page_icon="🔬", layout="wide")
 
@@ -108,17 +109,20 @@ def load_file(name: str, data: bytes) -> None:
 
 
 def step_upload() -> None:
-    st.markdown("### Upload a question paper")
-    st.markdown('<p class="muted">PDF, Word (.docx) or text file, in the format you already use. '
-                'The reviewer finds the multiple-choice questions for you.</p>', unsafe_allow_html=True)
-
-    uploaded = st.file_uploader("Question paper", type=["pdf", "docx", "txt"], label_visibility="collapsed")
-    col_sample, _ = st.columns([1, 3])
-    use_sample = col_sample.button("Try a sample paper", width="stretch")
-
-    with st.expander("Advanced: upload a SciQ-style CSV"):
-        st.caption("Columns: id, question, correct_answer, distractor1, distractor2, distractor3")
-        uploaded_csv = st.file_uploader("CSV file", type=["csv"], key="csv_upload")
+    left, right = st.columns([3, 2], gap="large")
+    with left:
+        st.markdown("### Upload a question paper")
+        st.markdown('<p class="muted">PDF, Word (.docx) or text file, in the format you already use. '
+                    'The reviewer finds the multiple-choice questions for you.</p>', unsafe_allow_html=True)
+        uploaded = st.file_uploader("Question paper", type=["pdf", "docx", "txt"],
+                                    label_visibility="collapsed")
+        st.markdown('<p class="muted" style="margin:0.4rem 0">No paper at hand?</p>', unsafe_allow_html=True)
+        use_sample = st.button("Try a sample paper", icon=":material/description:")
+        with st.expander("Advanced: upload a SciQ-style CSV"):
+            st.caption("Columns: id, question, correct_answer, distractor1, distractor2, distractor3")
+            uploaded_csv = st.file_uploader("CSV file", type=["csv"], key="csv_upload")
+    with right:
+        st.markdown(ui.how_it_works(), unsafe_allow_html=True)
 
     if use_sample:
         load_file(SAMPLE_PAPER.name, SAMPLE_PAPER.read_bytes())
@@ -234,7 +238,8 @@ def step_review() -> None:
 
     for i in range(len(results), n):
         progress.progress(i / n, text=f"Reviewing question {i + 1} of {n}")
-        counter.markdown(f"Findings so far: **{sum(len(r.findings) for r in results)}**")
+        counter.markdown(ui.review_status(mcqs[i].question, sum(len(r.findings) for r in results)),
+                         unsafe_allow_html=True)
         try:
             results.append(review_one(mcqs[i]))
         except GeminiBusyError as error:
@@ -260,17 +265,26 @@ def set_status(result_index: int, distractor_index: int, status: str) -> None:
     st.session_state.results[result_index] = result.model_copy(update={"suggestions": suggestions})
 
 
+def set_all_pending(status: str) -> None:
+    """Accept or reject every suggestion the teacher has not decided on yet."""
+    st.session_state.results = [
+        r.model_copy(update={"suggestions": [s.model_copy(update={"status": status}) if s.status == "pending"
+                                             else s for s in r.suggestions]})
+        for r in st.session_state.results
+    ]
+
+
 def summary(results) -> None:
     findings = [f for r in results for f in r.findings]
     preserved = sum(r.answer_preserved for r in results)
-    cols = st.columns(6)
-    cols[0].metric("Questions reviewed", len(results))
-    cols[1].metric("High", sum(f.severity == "high" for f in findings))
-    cols[2].metric("Medium", sum(f.severity == "medium" for f in findings))
-    cols[3].metric("Low", sum(f.severity == "low" for f in findings))
-    cols[4].metric("Suggestions made", sum(len(r.suggestions) for r in results))
-    cols[5].metric("Answers preserved", f"{preserved}/{len(results)}",
-                   f"{preserved / len(results):.0%}" if results else None, delta_color="off")
+    st.markdown(ui.stat_tiles([
+        ("Questions reviewed", len(results), ""),
+        ("High", sum(f.severity == "high" for f in findings), "high"),
+        ("Medium", sum(f.severity == "medium" for f in findings), "medium"),
+        ("Low", sum(f.severity == "low" for f in findings), "low"),
+        ("Suggestions made", sum(len(r.suggestions) for r in results), ""),
+        ("Answers preserved", f"{preserved}/{len(results)} ({preserved / len(results):.0%})", "ok"),
+    ]), unsafe_allow_html=True)
 
 
 def question_card(index: int, result, severities: list[str], issue_types: list[str]) -> None:
@@ -283,33 +297,43 @@ def question_card(index: int, result, severities: list[str], issue_types: list[s
         if any(f.issue_type == "possible_wrong_answer_key" for f in result.findings):
             st.markdown(ui.wrong_key_banner(), unsafe_allow_html=True)
         if findings:
-            st.markdown("".join(ui.finding_row(f, position) for f in findings), unsafe_allow_html=True)
+            st.markdown('<div class="section-label">Findings</div>'
+                        + "".join(ui.finding_row(f, position) for f in findings), unsafe_allow_html=True)
         elif not result.findings:
             st.markdown(f'{ui.badge(None)} <span class="muted">No issues found.</span>', unsafe_allow_html=True)
 
+        if result.suggestions:
+            st.markdown('<div class="section-label">Suggested replacements</div>', unsafe_allow_html=True)
         for suggestion in result.suggestions:
-            st.markdown(ui.suggestion_html(suggestion, position), unsafe_allow_html=True)
+            text_col, accept, reject = st.columns([6, 1.2, 1.2], vertical_alignment="center")
+            text_col.markdown(ui.suggestion_html(suggestion, position), unsafe_allow_html=True)
             key = f"{result.mcq.id}-{suggestion.distractor_index}"
-            accept, reject, _ = st.columns([1, 1, 4])
-            accept.button("Accept", key=f"acc-{key}", type="primary", width="stretch",
+            accept.button("Accept", key=f"acc-{key}", type="primary", width="stretch", icon=":material/check:",
                           disabled=suggestion.status == "accepted",
                           on_click=set_status, args=(index, suggestion.distractor_index, "accepted"))
-            reject.button("Reject", key=f"rej-{key}", width="stretch",
+            reject.button("Reject", key=f"rej-{key}", width="stretch", icon=":material/close:",
                           disabled=suggestion.status == "rejected",
                           on_click=set_status, args=(index, suggestion.distractor_index, "rejected"))
 
 
 def step_results() -> None:
     results = st.session_state.results
-    st.markdown("### Results")
+    st.markdown("### Review results")
     summary(results)
 
-    st.markdown("#### Filter")
-    f1, f2, f3 = st.columns([2, 3, 2])
-    severities = f1.multiselect("Severity", ["high", "medium", "low"], default=["high", "medium", "low"])
-    issue_types = f2.multiselect("Issue type", list(ui.ISSUE_LABELS), default=list(ui.ISSUE_LABELS),
-                                 format_func=ui.ISSUE_LABELS.get)
-    only_issues = f3.checkbox("Show only questions with issues", value=False)
+    pending = sum(s.status == "pending" for r in results for s in r.suggestions)
+    with st.container(border=True):
+        f1, f2, f3 = st.columns([2, 3, 2], vertical_alignment="bottom")
+        severities = f1.multiselect("Severity", ["high", "medium", "low"], default=["high", "medium", "low"],
+                                    format_func=str.upper)
+        issue_types = f2.multiselect("Issue type", list(ui.ISSUE_LABELS), default=list(ui.ISSUE_LABELS),
+                                     format_func=ui.ISSUE_LABELS.get)
+        only_issues = f3.toggle("Only questions with issues", value=False)
+        if pending:
+            b1, b2, _ = st.columns([2, 2, 3])
+            b1.button(f"Accept all {pending} undecided", on_click=set_all_pending, args=("accepted",),
+                      width="stretch")
+            b2.button("Reject all undecided", on_click=set_all_pending, args=("rejected",), width="stretch")
 
     shown = 0
     for index, result in enumerate(results):
@@ -321,21 +345,28 @@ def step_results() -> None:
     if shown == 0:
         st.info("No questions match these filters.")
 
-    st.markdown("#### Export")
-    st.markdown('<p class="muted">The revised paper applies only the suggestions you accepted. '
-                'Correct answers are unchanged.</p>', unsafe_allow_html=True)
+    st.markdown("### Download")
     positions = st.session_state.answer_positions
-    e1, e2, e3 = st.columns(3)
-    e1.download_button("Revised question paper (.docx)", export.revised_docx(results, positions),
-                       file_name="revised_paper.docx", type="primary", width="stretch",
-                       mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    e2.download_button("Review report (.csv)", export.report_csv(results), file_name="review_report.csv",
-                       mime="text/csv", width="stretch")
-    e3.download_button("Full results (.json)", export.results_json(results), file_name="review_results.json",
-                       mime="application/json", width="stretch")
+    with st.container(border=True):
+        st.markdown('<p class="muted">Both files open in Microsoft Word (use <b>File → Save as PDF</b> '
+                    'if you need a PDF). The revised paper applies only the suggestions you accepted; '
+                    'correct answers are never changed.</p>', unsafe_allow_html=True)
+        d1, d2 = st.columns(2)
+        d1.download_button("Revised question paper", export.revised_docx(results, positions),
+                           file_name="revised_question_paper.docx", type="primary", width="stretch",
+                           icon=":material/edit_document:", mime=DOCX_MIME)
+        d2.download_button("Review report", export.review_report_docx(results, positions),
+                           file_name="review_report.docx", type="primary", width="stretch",
+                           icon=":material/summarize:", mime=DOCX_MIME)
+        with st.expander("For analysis (spreadsheet and raw data)"):
+            a1, a2 = st.columns(2)
+            a1.download_button("Findings table (.csv)", export.report_csv(results),
+                               file_name="review_report.csv", mime="text/csv", width="stretch")
+            a2.download_button("Full results (.json)", export.results_json(results),
+                               file_name="review_results.json", mime="application/json", width="stretch")
 
     st.divider()
-    if st.button("Start a new review"):
+    if st.button("Start a new review", icon=":material/restart_alt:"):
         reset()
         st.rerun()
 

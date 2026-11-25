@@ -46,6 +46,34 @@ def header(current_step: int) -> None:
     )
 
 
+def how_it_works() -> str:
+    steps = [
+        ("Upload", "Drop your paper as it is: PDF, Word or text. Scanned papers work too."),
+        ("Confirm", "Check the questions and pick the correct answer where the paper does not say."),
+        ("Review", "Rule checks, a meaning-similarity scan and an AI judge look at every option."),
+        ("Decide", "Accept or reject better wrong options, then download a revised paper."),
+    ]
+    items = "".join(f'<li><span class="hiw-num">{i}</span><div><b>{escape(t)}</b><br>'
+                    f'<span class="muted">{escape(d)}</span></div></li>'
+                    for i, (t, d) in enumerate(steps, start=1))
+    return ('<div class="card hiw"><div class="hiw-title">How it works</div>'
+            f'<ol class="hiw-list">{items}</ol>'
+            '<div class="lock-note">🔒 Your correct answers are locked. The reviewer can flag a '
+            'possible wrong key, but it never changes an answer.</div></div>')
+
+
+def stat_tiles(tiles: list[tuple[str, object, str]]) -> str:
+    """Summary tiles: (label, value, tone) where tone is high/medium/low/ok or ''."""
+    cells = "".join(f'<div class="tile {tone}"><div class="tile-value">{escape(str(value))}</div>'
+                    f'<div class="tile-label">{escape(label)}</div></div>' for label, value, tone in tiles)
+    return f'<div class="tiles">{cells}</div>'
+
+
+def review_status(question: str, findings_so_far: int) -> str:
+    return (f'<div class="review-now"><span class="muted">Now checking:</span> {escape(question)}</div>'
+            f'<div class="muted">Findings so far: <b>{findings_so_far}</b></div>')
+
+
 def badge(severity: str | None) -> str:
     label = (severity or "ok").upper()
     return f'<span class="badge {escape((severity or "ok").lower())}">{label}</span>'
@@ -79,8 +107,13 @@ def card_body(result: ReviewResult, answer_position: int) -> str:
                     f'<span>{escape(text)}</span>{badge(severity)}</div>')
         distractor_index += 1
 
-    return (f'<div class="q-head"><div class="q-title">{escape(mcq.id)}. {escape(mcq.question)}</div>'
-            f'<div class="q-source">{escape(mcq.source)}</div></div>'
+    worst = max((f.severity for f in result.findings), key=SEVERITY_RANK.get, default=None)
+    count = len(result.findings)
+    summary = f"{count} issue{'s' if count != 1 else ''}" if count else "No issues"
+    return (f'<div class="q-stripe {worst or "ok"}"></div>'
+            f'<div class="q-head"><div class="q-title">{escape(mcq.id)}. {escape(mcq.question)}</div>'
+            f'<div class="q-meta">{badge(worst)} <span class="muted">{summary}</span></div></div>'
+            f'<div class="q-source">{escape(mcq.source)}</div>'
             f'<div class="options">{"".join(rows)}</div>')
 
 
@@ -114,7 +147,7 @@ def suggestion_html(suggestion, answer_position: int) -> str:
     status = ""
     if suggestion.status != "pending":
         status = f' <span class="status {suggestion.status}">· {suggestion.status.upper()}</span>'
-    return (f'<div class="suggestion"><b>Suggestion for option {letter}</b>{status}<br>'
+    return (f'<div class="suggestion {suggestion.status}"><b>Option {letter}</b>{status}<br>'
             f'<span class="old">{escape(suggestion.original)}</span> → '
             f'<span class="new">{escape(suggestion.new_text)}</span><br>'
             f'<span class="why">Misconception: {escape(suggestion.misconception)}</span></div>')
