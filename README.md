@@ -16,17 +16,14 @@ The full build plan is in [IMPLEMENTATION.md](IMPLEMENTATION.md); the per-phase 
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 2. Install CPU-only PyTorch FIRST (otherwise pip downloads ~2 GB of CUDA libraries)
-pip install torch --index-url https://download.pytorch.org/whl/cpu
-
-# 3. Install the rest
+# 2. Install everything (requirements.txt pins CPU-only PyTorch, so no ~2 GB CUDA download)
 pip install -r requirements.txt
 
-# 4. Add your Gemini API key (copy, do not rename, the example file)
+# 3. Add your Gemini API key (copy, do not rename, the example file)
 cp .env.example .env
 #    then open .env and paste your key after GEMINI_API_KEY=
 
-# 5. Check that the key and model work
+# 4. Check that the key and model work
 python scripts/check_setup.py      # expected: "Gemini OK: gemini-3.5-flash"
 ```
 
@@ -52,6 +49,20 @@ python scripts/capture_prompt_samples.py    # real prompts + replies → docs/pr
 python scripts/make_sciq_sample.py          # rebuild data/sample/sciq_sample.csv
 python scripts/make_sample_docx.py          # rebuild data/sample/sample_paper.docx
 ```
+
+## Deploy (Streamlit Community Cloud, from this GitHub repo)
+
+1. Go to https://share.streamlit.io and sign in with the GitHub account that owns this repo.
+2. **Create app** → "Deploy a public app from GitHub" → repository `basavarajbillur000/GEN-AI-HACKATHON`, branch `main`, main file `app.py`.
+3. **Advanced settings** → Python version **3.13**, and paste the secrets (TOML):
+   ```toml
+   GEMINI_API_KEY = "your_key_here"
+   GEMINI_MODEL = "gemini-3.5-flash-lite"
+   ```
+   Root-level secrets become environment variables, which `src/reviewer/config.py` already reads, so no code change is needed. Never put the key in the repository.
+4. **Deploy**. The first build takes a few minutes (it installs CPU PyTorch and downloads the MiniLM model). Every push to `main` redeploys automatically.
+
+The deployed app uses the team's Gemini key and its free-tier quota for every visitor. To limit who can use it, set the app to private under **Settings → Sharing** and invite the team and judges by email.
 
 ## How it works
 

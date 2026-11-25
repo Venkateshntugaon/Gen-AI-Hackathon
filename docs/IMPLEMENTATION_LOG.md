@@ -76,3 +76,10 @@
 **Files:** src/reviewer/pipeline/rules.py, similarity.py, judge.py, runner.py, prompts/judge.md, app.py, src/reviewer/export.py, scripts/capture_prompt_samples.py, tests/test_rules.py, docs/test_cases.md, docs/CHALLENGES.md
 **How to verify:** `pytest -q` → 67 passed. Upload PS84_test_paper_10_flawed_MCQs.pdf in the app and download the review report; compare with the before/after table in docs/test_cases.md.
 **Notes / issues:** The judge prompt changed, so earlier cached judge replies are no longer used and the sample paper/evaluation need fresh Gemini calls on their next run.
+
+## Deployment setup  (2026-11-25)
+**What we built:** requirements.txt now pins CPU-only PyTorch (`torch==2.15.0+cpu` from the PyTorch CPU index), so a plain `pip install -r requirements.txt` works locally and on Streamlit Community Cloud without the ~2 GB CUDA download. The README has a "Deploy" section: Streamlit Community Cloud from the GitHub repo, Python 3.13, and the Gemini key as a Streamlit secret (root-level secrets become environment variables, which config.py already reads).
+**Why:** The team asked for the app to go live from GitHub. Streamlit Community Cloud deploys straight from the repo and redeploys on every push.
+**Files:** requirements.txt, README.md
+**How to verify:** `pip install --dry-run -r requirements.txt` resolves; follow README → Deploy.
+**Notes / issues:** The deployed app spends the team's Gemini free-tier quota for every visitor; making it private (Settings → Sharing) is recommended for the demo.

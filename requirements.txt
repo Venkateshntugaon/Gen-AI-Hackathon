@@ -1,5 +1,6 @@
-# Install CPU-only torch FIRST (see README):
-#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# CPU-only PyTorch (no GPU needed; avoids ~2 GB of CUDA libraries locally and on Streamlit Cloud)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0+cpu
 streamlit
 pandas
 pydantic>=2
