@@ -26,3 +26,22 @@ All cases were run on 2026-11-25 with model `gemini-3.5-flash-lite` through the 
 ## Evaluation
 
 See [`data/eval/results.md`](../data/eval/results.md): 30 SciQ questions with 24 planted flaws. Recall 0.96; precision 0.46 for the findings that trigger a replacement (duplicate 1.00, also_correct 0.64, implausible 0.26); 100% of weak distractors got a validated suggestion; **answer preserved 30/30**.
+
+## Review of the 10-question test paper: before / after the fixes
+
+Input: `PS84_test_paper_10_flawed_MCQs.pdf` (10 questions, text PDF, answer under each question). "Before" is the team's `review_report.docx` from the app; "After" is a re-run through the same path as the app (PDF → `extract_questions` → `review_one` with each answer's paper position → Word review report), model `gemini-3.5-flash-lite`. Answers preserved: **10/10 before and after**.
+
+| Q | Planted / real issue | Before | After | Fix |
+|---|---|---|---|---|
+| 1 | D "O2" is also correct (same as Oxygen) | D: HIGH also_correct **and** LOW duplicate (same reason twice); A "Carbon dioxide": MEDIUM "Answer give-away" from the LLM | D: one finding, HIGH also_correct → suggestion "Hydrogen"; A no longer flagged | 5, 6 |
+| 2 | D "Joules" duplicates A "Joule" | LOW duplicate (rules + LLM) → "Pascal" | LOW duplicate (rules) → "Pascal" | 5 (LLM no longer labels duplicates) |
+| 3 | B "A football" implausible | MEDIUM implausible → "Brain" | MEDIUM implausible → "Brain" | unchanged ✔ |
+| 4 | Answer much longer than the others | MEDIUM answer give-away + 3 implausible, 3 suggestions | MEDIUM answer give-away; C, D MEDIUM implausible (2 suggestions); A now LOW | unchanged ✔ |
+| 5 | "…called an ________." only "atom" fits "an" | **No problems found** (cue missed) | MEDIUM answer give-away: "The question ends with "an", and only the correct answer fits it grammatically." | 1 |
+| 6 | Answer is "All of the above" | 6 findings: 2× similarity "unrelated to the answer", 3× HIGH "also correct", "No safe replacement found" on every option | Only LOW "All of the above makes the question harder to mark fairly" | 2 |
+| 7 | B "Iron" is also a body mineral | Answer-key flag says "**option 0** (Iron)"; 3 suggestions generated anyway | Reasons say "Option B"; no suggestions, shows "Resolve the answer key first" | 4, 7 |
+| 8 | Wrong key: "Ag" for gold (Au is B) | Answer-key flag + suggestion replacing **"Au" (the real answer!)** with "Gl" | Answer-key flag (HIGH), B also correct; no suggestions, shows "Resolve the answer key first"; answer still "Ag" (only flagged) | 4 |
+| 9 | Clean | LOW implausible on D | No problems found | (LLM run-to-run variation) |
+| 10 | Numeric options (°C) | A "50 °C", D "150 °C": MEDIUM "**also correct** (similarity 0.91 / 0.90)" + suggestions "212 °C", "373 °C" | A, D: LOW implausible from the LLM only; no similarity flags, no suggestions | 3, 6 |
+
+Summary counts: high 8 → 5, medium 12 → 7, low 8 → 9, suggestions 13 → 5. All the removed findings were false alarms or duplicates; every planted flaw is still reported. Unit tests for the fixes: `tests/test_rules.py` (blank grammar cue, number detection, no LLM answer cue/duplicate, one finding per option, letters instead of indices). `pytest -q` → 67 passed.

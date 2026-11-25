@@ -19,11 +19,13 @@ from src.reviewer.pipeline.generator import GenerateOutput
 from src.reviewer.pipeline.judge import JudgeOutput
 from src.reviewer.pipeline.rules import check_rules
 from src.reviewer.pipeline.runner import weak_distractors
-from src.reviewer.pipeline.judge import merge_findings, verdict_to_findings
+from src.reviewer.pipeline.judge import judge_payload as build_judge_payload
+from src.reviewer.pipeline.judge import merge_findings, option_letters, verdict_to_findings
 from src.reviewer.pipeline.similarity import check_similarity
 from src.reviewer.pipeline.validator import VerifyItem
 
 OUTPUT = ROOT / "docs" / "prompt_samples.md"
+ANSWER_POSITIONS = {"Q4": 1, "Q7": 2}   # Stamen is B, Water vapor is C on the sample paper
 
 # Q4 (implausible "A bicycle") and Q7 ("Steam" is also correct) from data/sample/sample_paper.docx
 SAMPLE_TEXT = """4. What is the part of the flower that produces pollen?
@@ -58,16 +60,12 @@ def capture_question(mcq: MCQ) -> list[str]:
     rule_findings = check_rules(mcq)
     sim_findings, scores = check_similarity(mcq)
 
-    judge_payload = {
-        "question": mcq.question, "correct_answer": mcq.correct_answer,
-        "distractors": {str(i): d for i, d in enumerate(mcq.distractors)},
-        "rule_flags": [f"{f.target}: {f.issue_type}" for f in rule_findings] or "none",
-        "similarity_scores": scores,
-    }
+    letters = option_letters(len(mcq.distractors), ANSWER_POSITIONS[mcq.id])
+    judge_payload = build_judge_payload(mcq, rule_findings, scores, letters)
     prompt, raw = llm.call_raw("judge", judge_payload, JudgeOutput, temperature=0.2)
     parts.append(section(f"Judge — {mcq.id} (temperature 0.2)", prompt, judge_payload, raw))
 
-    llm_findings = verdict_to_findings(JudgeOutput.model_validate_json(raw), len(mcq.distractors))
+    llm_findings = verdict_to_findings(JudgeOutput.model_validate_json(raw), len(mcq.distractors), letters)
     weak = weak_distractors(merge_findings(rule_findings + sim_findings + llm_findings))
     if not weak:
         return parts

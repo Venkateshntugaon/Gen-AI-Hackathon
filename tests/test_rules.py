@@ -82,3 +82,49 @@ def test_merge_keeps_highest_severity_and_all_layers():
     assert merged.severity == "high"
     assert merged.detected_by == ["rules", "similarity", "llm"]
     assert merged.reason == "LLM reason"
+
+
+# ---------- review fixes (10-question test paper) ----------
+
+def test_grammar_cue_with_trailing_blank():
+    found = kinds(check_rules(mcq(question="The smallest unit of a chemical element is called an ________.",
+                                  answer="atom", distractors=["molecule", "compound", "mixture"])))
+    assert ("question", "answer_cue", "medium") in found
+
+
+def test_numbers_with_units_are_detected():
+    from src.reviewer.pipeline.similarity import is_mainly_number
+    assert all(is_mainly_number(t) for t in ["100 °C", "50 °C", "29", "3.5 m/s", "Two"])
+    assert not any(is_mainly_number(t) for t in ["Oxygen", "kg m/s^2", "Carbon dioxide"])
+
+
+def test_llm_never_creates_answer_cue_or_duplicate():
+    from src.reviewer.pipeline.judge import JudgeOutput, OptionVerdict, verdict_to_findings
+    output = JudgeOutput(question_ambiguous=False, question_reason="", answer_key_agrees=True,
+                         answer_key_reason="", options=[
+                             OptionVerdict(option_index=0, is_also_correct="no", plausibility=4,
+                                           issue_type="answer_cue", reason="tempting"),
+                             OptionVerdict(option_index=1, is_also_correct="no", plausibility=3,
+                                           issue_type="duplicate", reason="same as option 0")])
+    assert verdict_to_findings(output, 3) == []
+
+
+def test_each_option_shows_one_finding_highest_severity():
+    findings = [
+        Finding(target="distractor:2", issue_type="duplicate", severity="low", reason="dup", detected_by=["llm"]),
+        Finding(target="distractor:2", issue_type="also_correct", severity="high", reason="O2 is oxygen",
+                detected_by=["llm"]),
+        Finding(target="question", issue_type="answer_cue", severity="medium", reason="long", detected_by=["rules"]),
+    ]
+    merged = merge_findings(findings)
+    on_option = [f for f in merged if f.target == "distractor:2"]
+    assert len(on_option) == 1 and on_option[0].issue_type == "also_correct"
+    assert any(f.target == "question" for f in merged)
+
+
+def test_reasons_use_letters_not_indices():
+    from src.reviewer.pipeline.judge import letters_in_reason, option_letters
+    letters = option_letters(3, answer_position=0)          # answer is A → distractors are B, C, D
+    assert letters == ["B", "C", "D"]
+    assert letters_in_reason("Option 0 (Iron) is also correct, unlike distractor 2.", letters) == \
+        "option B (Iron) is also correct, unlike option D."

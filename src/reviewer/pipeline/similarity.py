@@ -9,6 +9,8 @@ compare them with cosine similarity:
 The scores are also passed to the LLM judge as hints.
 """
 
+import re
+
 from sentence_transformers import SentenceTransformer, util
 
 from src.reviewer import config
@@ -16,6 +18,26 @@ from src.reviewer.models import MCQ, Finding
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 _model: SentenceTransformer | None = None
+
+NUMBER_RE = re.compile(r"^[-+±~≈]?\s*\d[\d.,]*(?:\s*[×x*]\s*10\^?[-−]?\d+)?")
+NUMBER_WORDS = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                "eleven", "twelve", "twenty", "hundred", "thousand", "million", "half", "none"}
+
+
+def is_mainly_number(text: str) -> bool:
+    """True for "100 °C", "29", "3.5 m/s", "6 × 10^23", "Two": numbers with or without units.
+
+    Embeddings cannot compare numbers ("50 °C" and "100 °C" score 0.91), so the
+    too-close / too-far checks are skipped for them.
+    """
+    text = text.strip()
+    if text.lower() in NUMBER_WORDS:
+        return True
+    match = NUMBER_RE.match(text)
+    if not match:
+        return False
+    unit = text[match.end():].strip()
+    return len(unit.split()) <= 3 and len(re.sub(r"[^A-Za-z]", "", unit)) <= 15
 
 
 def get_model() -> SentenceTransformer:
@@ -42,6 +64,8 @@ def check_similarity(mcq: MCQ) -> tuple[list[Finding], dict]:
 
     findings = []
     for i, score in enumerate(to_answer):
+        if is_mainly_number(mcq.correct_answer) or is_mainly_number(distractors[i]):
+            continue   # meaning-similarity is not meaningful for numbers
         if score > config.SIM_TOO_CLOSE:
             findings.append(_finding(i, "also_correct", "medium",
                                      f'"{distractors[i]}" means almost the same as the correct answer (similarity {score:.2f}).'))

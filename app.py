@@ -22,7 +22,7 @@ from src.reviewer.ingest.readers import read_csv
 from src.reviewer.llm import GeminiBusyError
 from src.reviewer.models import MCQ
 from src.reviewer.pipeline import similarity
-from src.reviewer.pipeline.runner import review_one
+from src.reviewer.pipeline.runner import RESOLVE_KEY_FIRST, has_wrong_key_flag, review_one
 from ui import components as ui
 
 SAMPLE_PAPER = Path(__file__).resolve().parent / "data" / "sample" / "sample_paper.docx"
@@ -241,7 +241,7 @@ def step_review() -> None:
         counter.markdown(ui.review_status(mcqs[i].question, sum(len(r.findings) for r in results)),
                          unsafe_allow_html=True)
         try:
-            results.append(review_one(mcqs[i]))
+            results.append(review_one(mcqs[i], st.session_state.answer_positions[mcqs[i].id]))
         except GeminiBusyError as error:
             st.error(f"{error}  \n{len(results)} of {n} questions are done and kept.")
             st.button("Retry", type="primary")
@@ -302,7 +302,11 @@ def question_card(index: int, result, severities: list[str], issue_types: list[s
         elif not result.findings:
             st.markdown(f'{ui.badge(None)} <span class="muted">No issues found.</span>', unsafe_allow_html=True)
 
-        if result.suggestions:
+        if has_wrong_key_flag(result.findings):
+            st.markdown('<div class="section-label">Suggested replacements</div>'
+                        f'<p class="muted">{RESOLVE_KEY_FIRST}. Replacements are suggested only after '
+                        'the correct answer is confirmed.</p>', unsafe_allow_html=True)
+        elif result.suggestions:
             st.markdown('<div class="section-label">Suggested replacements</div>', unsafe_allow_html=True)
         for suggestion in result.suggestions:
             text_col, accept, reject = st.columns([6, 1.2, 1.2], vertical_alignment="center")

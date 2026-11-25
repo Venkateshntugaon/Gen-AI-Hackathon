@@ -152,6 +152,10 @@ def _report_question(doc, number: int, result: ReviewResult, answer_position: in
         note.italic = True
         note.font.color.rgb = SEVERITY_COLOURS["low"]
 
+    if any(f.issue_type == "possible_wrong_answer_key" for f in result.findings):
+        _coloured(doc.add_paragraph(), "Resolve the answer key first. Replacement options are suggested "
+                  "only after the correct answer is confirmed.", SEVERITY_COLOURS["high"], bold=False)
+
     for suggestion in result.suggestions:
         letter = _target_label(f"distractor:{suggestion.distractor_index}", answer_position)
         p = doc.add_paragraph()

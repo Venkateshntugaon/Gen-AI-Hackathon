@@ -33,6 +33,11 @@ def _singular(word: str) -> str:
     return word
 
 
+def is_above_option(text: str) -> bool:
+    """True for "All of the above" / "None of the above" (any case or punctuation)."""
+    return any(phrase in text.lower() for phrase in ABOVE_PHRASES)
+
+
 def check_rules(mcq: MCQ) -> list[Finding]:
     """Run all rule checks on one MCQ and return the findings."""
     return (_duplicates_and_answer_copies(mcq) + _length_cue(mcq)
@@ -72,7 +77,9 @@ def _length_cue(mcq: MCQ) -> list[Finding]:
 
 def _article_cue(mcq: MCQ) -> list[Finding]:
     """The question ends with "an" (or "a") and only the answer fits that article."""
-    words = re.sub(r"[^\w\s]", " ", mcq.question.lower()).split()
+    # Strip a trailing blank such as "an ________." first; "_" counts as a word character.
+    stem = re.sub(r"[\s_.…:?\-]+$", "", mcq.question.lower())
+    words = re.sub(r"[^\w\s]", " ", stem).split()
     if not words or words[-1] not in ("a", "an"):
         return []
     wants_vowel = words[-1] == "an"

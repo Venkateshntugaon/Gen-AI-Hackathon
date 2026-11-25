@@ -13,7 +13,8 @@ For EACH distractor (wrong option), decide using accepted science knowledge:
   3 = a reasonable wrong option of the same kind as the answer (e.g. another organ system).
   4-5 = matches a common student misconception.
 - issue_type: one of also_correct, implausible, duplicate, answer_cue, or null if fine.
-- reason: one sentence, max 25 words, a teacher-friendly explanation.
+- reason: one sentence, max 25 words, a teacher-friendly explanation. Refer to options only
+  by their letter on the paper (A-D), never by the index number.
 
 Also decide whether the question itself is ambiguous (more than one defensible answer
 because of its wording).
@@ -22,6 +23,6 @@ Hints from earlier checks (may be wrong, use your judgement): {rule_flags}, {sim
 
 Question: {question}
 Verified answer: {correct_answer}
-Distractors (index: text): {distractors}
+Distractors (index for option_index, letter printed on the paper, text): {distractors}
 
 Return JSON only, matching the schema.
