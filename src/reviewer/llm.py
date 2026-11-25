@@ -43,13 +43,19 @@ def call_json(prompt_name: str, payload: dict, schema, temperature: float = 0.2)
 
     `schema` is a Pydantic model (or a type such as list[Model]).
     """
+    _, raw = call_raw(prompt_name, payload, schema, temperature)
+    return TypeAdapter(schema).validate_json(raw)
+
+
+def call_raw(prompt_name: str, payload: dict, schema, temperature: float = 0.2) -> tuple[str, str]:
+    """Same as call_json, but return (filled prompt, raw JSON text). Used for the report samples."""
     prompt = fill_prompt(prompt_name, payload)
     key = _cache_key(prompt, temperature)
     cache = _load_cache()
     if key not in cache:
-        cache[key] = _generate_with_retry(prompt, schema, temperature)
+        cache[key] = generate_text(prompt, schema, temperature)
         _save_cache(cache)
-    return TypeAdapter(schema).validate_json(cache[key])
+    return prompt, cache[key]
 
 
 def fill_prompt(prompt_name: str, payload: dict) -> str:
@@ -64,7 +70,11 @@ def fill_prompt(prompt_name: str, payload: dict) -> str:
     return prompt
 
 
-def _generate_with_retry(prompt: str, schema, temperature: float) -> str:
+def generate_text(prompt, schema, temperature: float) -> str:
+    """Call Gemini (JSON output matching schema) with retry; no cache. Returns the raw JSON text.
+
+    `prompt` is a string, or a list of parts (e.g. text + PDF bytes for a scanned paper).
+    """
     for attempt in range(MAX_ATTEMPTS):
         try:
             response = _get_client().models.generate_content(
