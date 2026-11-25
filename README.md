@@ -27,7 +27,7 @@ cp .env.example .env
 #    then open .env and paste your key after GEMINI_API_KEY=
 
 # 5. Check that the key and model work
-python scripts/check_setup.py      # expected: "Gemini OK: gemini-3.8-flash"
+python scripts/check_setup.py      # expected: "Gemini OK: gemini-3.5-flash"
 
 # 6. Run the app
 streamlit run app.py
