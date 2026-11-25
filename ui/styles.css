@@ -1,0 +1,91 @@
+/* Custom look for the MCQ Distractor Reviewer (Alliance University colours). */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+  --maroon: #8E0A13;
+  --navy: #012258;
+  --ink: #061F39;
+  --light-blue: #E9EEF6;
+  --light-pink: #F8ECED;
+  --bg: #F7F8FA;
+  --amber: #9A5B00;
+  --grey: #5B6472;
+  --green: #1E7B4F;
+  --border: #DCE2EC;
+}
+
+/* Hide Streamlit's default menu, header decoration and footer */
+#MainMenu, footer, [data-testid="stDecoration"] { visibility: hidden; height: 0; }
+[data-testid="stHeader"] { background: transparent; }
+.block-container { padding-top: 2rem; max-width: 1100px; }
+
+h1, h2, h3, h4, .app-title { font-family: 'Poppins', system-ui, sans-serif; color: var(--ink); }
+
+/* Header */
+.app-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: 1rem; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 3px solid var(--maroon); }
+.app-title { font-size: 1.9rem; font-weight: 700; margin: 0; line-height: 1.2; }
+.app-subtitle { color: var(--navy); font-size: 0.95rem; margin-top: 0.2rem; }
+
+/* Stepper */
+.stepper { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.step { display: flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.8rem;
+  border-radius: 999px; font-size: 0.85rem; background: #fff; border: 1px solid var(--border); color: var(--grey); }
+.step .num { display: inline-flex; width: 1.4rem; height: 1.4rem; border-radius: 50%;
+  align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600;
+  background: var(--light-blue); color: var(--navy); }
+.step.done { color: var(--navy); }
+.step.done .num { background: var(--navy); color: #fff; }
+.step.current { background: var(--maroon); border-color: var(--maroon); color: #fff; font-weight: 600; }
+.step.current .num { background: #fff; color: var(--maroon); }
+
+/* Cards */
+.card, [data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVerticalBlock"] .q-head) {
+  background: #fff; border-radius: 10px; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(6, 31, 57, 0.06), 0 4px 12px rgba(6, 31, 57, 0.04); }
+.card { padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+[data-testid="stMetric"] { background: #fff; border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.8rem 1rem; box-shadow: 0 1px 3px rgba(6, 31, 57, 0.06); }
+[data-testid="stMetricValue"] { font-family: 'Poppins', system-ui, sans-serif; color: var(--ink); }
+
+/* Buttons */
+.stButton > button, .stDownloadButton > button { border-radius: 8px; font-weight: 600; }
+.stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {
+  background: var(--maroon); border-color: var(--maroon); color: #fff; }
+.stButton > button[kind="primary"]:hover, .stDownloadButton > button[kind="primary"]:hover {
+  background: #6F0810; border-color: #6F0810; }
+
+/* Badges (always text + colour) */
+.badge { display: inline-block; min-width: 4.2rem; text-align: center; padding: 0.12rem 0.5rem;
+  border-radius: 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; color: #fff; }
+.badge.high { background: var(--maroon); }
+.badge.medium { background: var(--amber); }
+.badge.low { background: var(--grey); }
+.badge.ok { background: var(--green); }
+
+/* Question card content */
+.q-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.q-title { font-family: 'Poppins', system-ui, sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+.q-source { color: var(--grey); font-size: 0.78rem; white-space: nowrap; }
+.options { margin: 0.8rem 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.opt { display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.6rem; align-items: center;
+  padding: 0.5rem 0.8rem; border-top: 1px solid var(--border); }
+.opt:first-child { border-top: none; }
+.opt .letter { font-weight: 700; color: var(--navy); }
+.opt.answer { background: #EEF7F2; }
+.lock { color: var(--green); font-size: 0.8rem; font-weight: 600; }
+.finding { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.4rem 0; }
+.finding .what { font-weight: 600; color: var(--ink); }
+.finding .why { color: var(--ink); }
+.chip { display: inline-block; padding: 0.05rem 0.45rem; margin-right: 0.25rem; border-radius: 999px;
+  font-size: 0.7rem; background: var(--light-blue); color: var(--navy); }
+.banner { background: var(--light-pink); border-left: 4px solid var(--maroon); color: var(--maroon);
+  padding: 0.6rem 0.9rem; border-radius: 6px; font-weight: 600; margin: 0.6rem 0; }
+.suggestion { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; }
+.suggestion .old { text-decoration: line-through; color: var(--grey); }
+.suggestion .new { font-weight: 600; color: var(--navy); }
+.suggestion .why { font-style: italic; color: var(--grey); font-size: 0.88rem; }
+.status { font-size: 0.8rem; font-weight: 600; }
+.status.accepted { color: var(--green); }
+.status.rejected { color: var(--grey); }
+.muted { color: var(--grey); font-size: 0.88rem; }
