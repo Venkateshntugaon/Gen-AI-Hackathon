@@ -41,3 +41,10 @@
 **Files:** app.py, ui/components.py, ui/styles.css, .streamlit/config.toml, docs/screenshots/
 **How to verify:** `streamlit run app.py` → "Try a sample paper" → "Start review" → results. Automated check with Streamlit's AppTest: the full flow reaches Results with no exceptions, metrics show 10 reviewed and 10/10 preserved, and Accept changes a suggestion's status.
 **Notes / issues:** All question text is HTML-escaped before it is shown. Session state survives Streamlit reruns (button clicks, filters); a full browser reload starts a new session (see PENDING.md). The similarity model is loaded once with `st.cache_resource`.
+
+## Phase 6: Export  (2026-11-25)
+**What we built:** Three downloads on the Results page: the revised question paper (.docx) with accepted suggestions applied and an answer key at the end, a review report (.csv) with one row per finding (question id, target, issue type, severity, reason, detected by, suggestion, status, answer preserved), and the full results (.json) as a dump of all ReviewResult objects.
+**Why:** Teachers work in Word, the CSV is for analysis, and the JSON is our evidence for evaluation and the report.
+**Files:** src/reviewer/export.py
+**How to verify:** On the Results page, accept a suggestion and download all three files. In the sample run, the revised DOCX showed "D) Fungus" (accepted) in Q1, and its answer key letters matched the original paper's answers exactly (checked by script).
+**Notes / issues:** Only suggestions with status "accepted" change the paper. The answer is inserted back into its original position, so answer letters never move.
