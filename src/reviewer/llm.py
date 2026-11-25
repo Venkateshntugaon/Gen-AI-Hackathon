@@ -6,10 +6,13 @@ Why this file exists: all LLM steps (judge, generate, verify) need the same thin
   - cache replies on disk (data/cache/llm_cache.json) so the free-tier quota is
     saved and a live demo is instant and repeatable,
   - retry on rate-limit / server errors (wait 2 s, 4 s, 8 s), then give a clear message.
+    The free tier allows only a few requests per minute, so when Gemini says how long
+    to wait (429 "retry in N s"), we wait that long instead (at most ~1 minute).
 """
 
 import hashlib
 import json
+import re
 import time
 from pathlib import Path
 
@@ -21,8 +24,12 @@ from src.reviewer import config
 
 PROMPTS_DIR = config.PROJECT_ROOT / "prompts"
 CACHE_FILE = config.PROJECT_ROOT / "data" / "cache" / "llm_cache.json"
-RETRY_WAITS = [2, 4, 8]   # seconds
+RETRY_WAITS = [2, 4, 8]   # seconds, for server errors
+MAX_RATE_LIMIT_WAIT = 65  # seconds; free-tier limits are per minute
+MAX_ATTEMPTS = 6
 BUSY_MESSAGE = "Gemini is busy (free-tier limit). Wait a minute and press Retry."
+DAILY_LIMIT_MESSAGE = ("Gemini's free daily limit for this model is used up. Try again tomorrow, "
+                       "or put another model name in GEMINI_MODEL in .env (see scripts/check_setup.py).")
 
 _client: genai.Client | None = None
 
@@ -58,7 +65,7 @@ def fill_prompt(prompt_name: str, payload: dict) -> str:
 
 
 def _generate_with_retry(prompt: str, schema, temperature: float) -> str:
-    for wait in [*RETRY_WAITS, None]:
+    for attempt in range(MAX_ATTEMPTS):
         try:
             response = _get_client().models.generate_content(
                 model=config.GEMINI_MODEL,
@@ -71,12 +78,27 @@ def _generate_with_retry(prompt: str, schema, temperature: float) -> str:
             )
             return response.text
         except errors.APIError as error:
-            retryable = isinstance(error, errors.ServerError) or error.code == 429
-            if not retryable:
-                raise
+            if error.code == 429 and "per day" in str(error):
+                raise GeminiBusyError(DAILY_LIMIT_MESSAGE) from error   # waiting will not help
+            wait = _retry_wait(error, attempt)
             if wait is None:
+                raise
+            if attempt == MAX_ATTEMPTS - 1:
                 raise GeminiBusyError(BUSY_MESSAGE) from error
             time.sleep(wait)
+    raise GeminiBusyError(BUSY_MESSAGE)
+
+
+def _retry_wait(error: errors.APIError, attempt: int) -> float | None:
+    """Seconds to wait before retrying, or None if the error is not worth retrying."""
+    if error.code == 429:
+        suggested = re.search(r"retry in ([\d.]+)s", str(error))
+        if suggested:
+            return min(float(suggested.group(1)) + 1, MAX_RATE_LIMIT_WAIT)
+        return RETRY_WAITS[min(attempt, len(RETRY_WAITS) - 1)] * 4
+    if isinstance(error, errors.ServerError):
+        return RETRY_WAITS[min(attempt, len(RETRY_WAITS) - 1)]
+    return None
 
 
 def _get_client() -> genai.Client:
